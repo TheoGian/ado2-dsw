@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Carros Cadastrados</title>
+</head>
+<body>
+<h1>Dashboard de Carros</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Nome</th>
+        <th>Cor</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="car : ${cars}">
+        <td th:text="${car.name}"></td>
+        <td th:text="${car.color}"></td>
+        <td>
+            <a th:href="@{/cars/edit/{id}(id=${car.id})}">Editar</a>
+            <form th:action="@{/cars/delete/{id}(id=${car.id})}" method="post" style="display:inline;">
+                <button type="submit" onclick="return confirm('Vai querer remover esse carro?')">Remover</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
